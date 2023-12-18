@@ -58,6 +58,9 @@ components:
     image: registry.redhat.io/devspaces/udi-rhel8:3.10
     mountSources: true
   name: py
+- name: venv
+  volume:
+    size: '1Gi'
 - image:
     dockerfile:
       buildContext: .
