@@ -39,10 +39,6 @@ commands:
   id: deploy
 components:
 - container:
-    args:
-    - tail
-    - -f
-    - /dev/null
     endpoints:
     - name: http-python
       targetPort: 8080
@@ -52,7 +48,14 @@ components:
     env:
     - name: DEBUG_PORT
       value: "5858"
-    image: registry.access.redhat.com/ubi9/python-39:1-153.1699551718
+    volumeMounts:
+    - name: venv
+      path: /home/user/.venv
+    memoryLimit: '2Gi'
+    memoryRequest: '1Gi'
+    cpuLimit: '2'
+    cpuRequest: '1'
+    image: registry.redhat.io/devspaces/udi-rhel8:3.10
     mountSources: true
   name: py
 - image:
