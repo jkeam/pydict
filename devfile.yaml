@@ -42,12 +42,15 @@ components:
     endpoints:
     - name: http-python
       targetPort: 8080
-    - exposure: none
-      name: debug
+      exposure: public
+    - name: debug
       targetPort: 5858
+      exposure: none
     env:
     - name: DEBUG_PORT
       value: "5858"
+    - name: PORT
+      value: "8080"
     volumeMounts:
     - name: venv
       path: /home/user/.venv
